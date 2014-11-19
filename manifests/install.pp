@@ -1,8 +1,8 @@
 class kibana::install (
-  $version = "3.1.2",
-  $site = "https://github.com/elasticsearch/kibana/archive/",
-  $target = "/var/www/kibana",
-  $archtarget = "/opt/",
+  $version = '3.1.2',
+  $site = 'https://github.com/elasticsearch/kibana/archive/',
+  $target = '/var/www/kibana',
+  $archtarget = '/opt/',
 ) {
   validate_string($version)
   validate_string($site)
@@ -25,7 +25,7 @@ class kibana::install (
 
 	exec { 'download-kibana':
 	  command => "curl -L -s -S -k -o ${archtarget}/${archive} ${downloadurl}",
-	  path    => "/bin:/usr/bin",
+	  path    => '/bin:/usr/bin',
 	  creates => "${archtarget}/${archive}",
 	  require => [Package['curl'], File[$archtarget], File[$target]],
 	  notify  => Exec['extract-kibana'],
@@ -33,7 +33,7 @@ class kibana::install (
 
   exec { 'extract-kibana':
     command     => "tar --strip-components=1 -zxf ${archtarget}/${archive} -C ${target}",
-    path        => "/bin:/usr/bin",
+    path        => '/bin:/usr/bin',
     refreshonly => true,
   }
 
