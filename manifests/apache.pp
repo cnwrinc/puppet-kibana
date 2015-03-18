@@ -1,4 +1,5 @@
 class kibana::apache {
+  include kibana::install
 
   class { '::apache':
     default_vhost => false,

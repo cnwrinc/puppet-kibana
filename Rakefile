@@ -16,3 +16,5 @@ task :validate do
     sh "erb -P -x -T '-' #{template} | ruby -c"
   end
 end
+task :beaker => [:spec_prep] do
+end
