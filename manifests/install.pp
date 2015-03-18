@@ -23,12 +23,12 @@ class kibana::install (
     ensure => present,
   }
 
-	exec { 'download-kibana':
-	  command => "curl -L -s -S -k -o ${archtarget}/${archive} ${downloadurl}",
-	  path    => '/bin:/usr/bin',
-	  creates => "${archtarget}/${archive}",
-	  require => [Package['curl'], File[$archtarget], File[$target]],
-	  notify  => Exec['extract-kibana'],
+  exec { 'download-kibana':
+    command => "curl -L -s -S -k -o ${archtarget}/${archive} ${downloadurl}",
+    path    => '/bin:/usr/bin',
+    creates => "${archtarget}/${archive}",
+    require => [Package['curl'], File[$archtarget], File[$target]],
+    notify  => Exec['extract-kibana'],
   }
 
   exec { 'extract-kibana':
