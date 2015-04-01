@@ -14,6 +14,10 @@ class kibana::install (
     ensure => directory,
   }
 
+  file { '/var/www':
+    ensure => directory,
+  }
+
   file { $target:
     ensure => directory,
   }

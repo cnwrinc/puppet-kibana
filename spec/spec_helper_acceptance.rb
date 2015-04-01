@@ -18,7 +18,7 @@ RSpec.configure do |c|
   # Fixtures root
   fixture_root = "#{proj_root}/spec/fixtures/modules"
   # Moudle Name
-  mod = 'hardmode'
+  mod = 'kibana'
   # Readable test descriptions
   c.formatter = :documentation
   
@@ -35,6 +35,10 @@ RSpec.configure do |c|
       end
 #      Uncomment the following line if manually debugging failures
 #      binding.pry
+
+      # Ensures that root password == vagrant so that we can log into the
+      # virtual machine to debug failures if BEAKER_destroy=no
+      on host, "echo -e 'vagrant\nvagrant' | (passwd --stdin $USER)"
     end
   end
 end
